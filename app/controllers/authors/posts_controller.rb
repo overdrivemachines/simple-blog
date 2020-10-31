@@ -55,7 +55,7 @@ module Authors
 
       # Only allow a trusted parameter "white list" through.
       def post_params
-        params.require(:post).permit(:title, :description, :published, :published_at, :author_id)
+        params.require(:post).permit(:title, :description)
       end
   end
 end
