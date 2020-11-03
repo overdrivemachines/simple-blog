@@ -16,12 +16,14 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import '../stylesheets/application';
+
 require("trix")
 require("@rails/actiontext")
 
-document.addEventListener('turbolinks:load', () = {
+document.addEventListener("turbolinks:load", () => {
 
-  document.addEventListener('click', () = {
+  document.addEventListener('click', () => {
     let element = event.target.closest('.paragraph-content');
     if (!element) return;
 
@@ -29,7 +31,7 @@ document.addEventListener('turbolinks:load', () = {
     element.nextElementSibling.classList.remove('d-none');
   });
 
-  document.addEventListener('click', () = {
+  document.addEventListener('click', () => {
     if (!event.target.matches('.cancel')) return;
 
     let element = event.target.closest('.paragraph-form');
