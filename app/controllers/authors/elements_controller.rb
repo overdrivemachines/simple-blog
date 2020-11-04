@@ -41,7 +41,7 @@ module Authors
 
       # Only allow a trusted parameter "white list" through.
       def element_params
-        params.require(:element).permit(:element_type, :content)
+        params.require(:element).permit(:element_type, :content, :image)
       end
   end
 end
