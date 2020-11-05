@@ -24,36 +24,40 @@
         <% @post.elements.each do |element| %>
           <% if element.persisted? %>
             <% if element.paragraph? %>
-            <div class="mb-4 p-3 paragraph">
-              <div class="paragraph-content">
-                <% if element.content.present? %>
-                  <%= element.content %>
-                <% else %>
-                  Click to add content.
-                <% end %>
+              <div class="mb-4 p-3 paragraph">
+                <div class="paragraph-content">
+                  <% if element.content.present? %>
+                    <%= element.content %>
+                  <% else %>
+                    Click to add content.
+                  <% end %>
+                </div>
+                <div class="paragraph-form d-none">
+                  <%= form_with(model: [@post, element]) do |form| %>
+                    <%= form.rich_text_area :content %>
+                    <div class="mt-3">
+                      <%= form.submit "Save", class: "btn btn-primary" %>
+                      <a href="#" class="cancel btn btn-secondary">Cancel</a>
+                    </div>                
+                  <% end %>
+                </div>
               </div>
-              <div class="paragraph-form d-none">
+            <% elsif element.image? %>
+              <% if element.image.present? %>
+                <%= image_tag(element.image) %>
+              <% else %>
                 <%= form_with(model: [@post, element]) do |form| %>
-                  <%= form.rich_text_area :content %>
+                  <%= form.file_field :image %>
                   <div class="mt-3">
                     <%= form.submit "Save", class: "btn btn-primary" %>
                     <a href="#" class="cancel btn btn-secondary">Cancel</a>
                   </div>                
                 <% end %>
-              </div>
-            </div>
-            <% elsif element.image? %>
-              <%= form_with(model: [@post, element]) do |form| %>
-                <%= form.file_field :image %>
-                <div class="mt-3">
-                  <%= form.submit "Save", class: "btn btn-primary" %>
-                  <a href="#" class="cancel btn btn-secondary">Cancel</a>
-                </div>                
               <% end %>
             <% end %>
           <% end %>
         <% end %>
       </div>
-    </div>    
+    </div>
   </div>
 </div>
