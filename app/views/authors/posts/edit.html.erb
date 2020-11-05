@@ -38,6 +38,12 @@
     </div>    
     <div class="card">
       <div class="card-body pt-5">
+        <% if @post.published? %>
+          <span class="badge badge-primary mr-1">
+            Published
+          </span>
+          Published <%= time_ago_in_words(@post.published_at) %>
+        <% end %>
         <% @post.elements.each do |element| %>
           <% if element.persisted? %>
             <% if element.paragraph? %>
