@@ -53,7 +53,7 @@
       
       <div class="card-body pt-5" data-controller="elements">
         <ul id="elements" data-action="drop->elements#sort">
-          <% @post.elements.each do |element| %>
+          <% @post.elements.order(:position).each do |element| %>
             <% if element.persisted? %>
               <li data-id="<%= element.id %>" class="element-item">
                 <% if element.paragraph? %>
