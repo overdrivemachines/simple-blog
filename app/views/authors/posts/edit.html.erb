@@ -55,7 +55,7 @@
         <ul id="elements" data-action="drop->elements#sort">
           <% @post.elements.each do |element| %>
             <% if element.persisted? %>
-              <li>
+              <li data-id="<%= element.id %>" class="element-item">
                 <% if element.paragraph? %>
                   <div class="mb-4 p-3 paragraph">
                     <div class="paragraph-content">
