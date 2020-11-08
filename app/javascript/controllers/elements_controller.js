@@ -1,6 +1,7 @@
-import { Controller } from "stimulus"
+// This is a stimulus reflex controller
+import ApplicationController from './application_controller'
 
-export default class extends Controller {
+export default class extends ApplicationController {
   sort() {
     console.log("Sorting elements...");
     let element = document.getElementById('elements');
@@ -9,5 +10,8 @@ export default class extends Controller {
       return ({id: element.dataset.id, position: index + 1});
     });
     console.log(elements);
+
+    element.dataset.elements = JSON.stringify(elements);
+    this.stimulate('ElementsReflex#sort', element);
   }
 }
